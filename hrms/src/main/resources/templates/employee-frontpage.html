@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="windows-1256">
+<title>Waiting List</title>
+
+
+<link rel="stylesheet"
+	 href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" 
+	 integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" 
+	 crossorigin="anonymous">
+
+</head>
+<body>
+	<div class="container">
+		<h3> Surgery Waiting List:</h3>
+		<hr/>
+		<br/>
+		
+		<a th:href="@{/employee/profile(employeeId=${employee.employeeId})}" class="btn btn-primary">Profile</a>
+		<a th:href="@{/surgerywaitinglist/patientSurgerySearch}" class="btn btn-primary">Patient Procedure Search</a>
+			<br /> 
+			<br />
+		<br/>
+		<br/>
+		
+		<!-- ///////////////////////////////
+			To auto/prevent column wrapping
+			/////////////////////////////// -->
+			
+		<div class="row">
+			<div class="col-auto">
+				<table class="table table-primary table-bordered table-striped" id="waitinglist">
+					<thead>
+						<tr>
+							<th>Surgery ID</th>
+							<th>Procedure</th>
+							<th>Diagnosis</th>
+							<th>Patient ID</th>
+							<th>Surgeon ID</th>
+							<th>Department ID</th>
+							<th>Addition Date</th>
+							<th>Actual Booking Date</th>
+							<th>Action</th>
+							
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="employee: ${employee}">
+							<td th:text="${employee.employeeId}"></td>
+							<td th:text="${employee.employeeId}"></td>
+							<td th:text="${employee.employeeId}"></td>
+							<td th:text="${employee.employeeId}"></td>
+							<td th:text="${employee.employeeId}"></td>
+							<td th:text="${employee.employeeId}"></td>
+							<td th:text="${employee.employeeId}"></td>
+							<td th:text="${employee.employeeId}"></td>
+							<td>
+								<a th:href="@{/surgerywaitinglist}" class="btn btn-info">Update</a>
+								<a th:href="@{/surgerywaitinglist}" class="btn btn-info">Remove</a>
+							
+							</td>
+						</tr>
+					</tbody>
+					
+				</table>
+			</div>
+		</div>
+	</div>
+	
+	
+		
+		
+</body>
+</html>
