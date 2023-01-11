@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -29,10 +30,24 @@ public class EmployeeController {
 		
 		System.out.println(employeeId);
 		Employee employee = EmployeeRepo.findById(employeeId).get();
-		System.out.println(employee);
+		//System.out.println(employee);
 		ModelAndView mav = new ModelAndView("employee-profile");
 		mav.addObject("employee", employee);
 		return mav;
 	}
+	
+	@PostMapping("/employee/saveProfile")
+	public String saveProfile(@ModelAttribute Employee employee) {
+		
+		//System.out.println("Employee form form: " +  employee);
+		Employee tempEmployee = EmployeeRepo.findById(employee.getEmployeeId()).get();
+		tempEmployee.setAddress(employee.getAddress());
+		tempEmployee.setContactNumber(employee.getContactNumber());
+		//System.out.println("tempEmployee form database: " +  tempEmployee);
+		
+		EmployeeRepo.save(tempEmployee);
+		return "redirect:/employee/" + employee.getEmployeeId();
+	}
+	
 	
 }

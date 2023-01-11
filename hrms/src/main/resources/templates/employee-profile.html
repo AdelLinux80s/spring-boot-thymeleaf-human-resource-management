@@ -17,11 +17,11 @@
 <body>
 	<div class="container">
 		<br />
-		<h3>Add New Procedure dropdownWithHAshmapNonDependent</h3>
+		Welcome <span th:text="${employee.firstName}"></span>
 		<br />
 		<hr />
 		<br />
-		<form th:action="@{saveToWaitinList}" th:object="${waitinglist}"
+		<form th:action="@{/employee/saveProfile}" th:object="${employee}"
 			method="POST">
 
 			<table class="table table-primary table-bordered table-striped"
@@ -50,11 +50,14 @@
 					</tr>
 					<tr>
 						<td>Address</td>
-						<td th:text="${employee.address}"></td>
+						<td><input type="text" th:field="${employee.address}"
+							class="form-control col-4 mb-4" placeholder="Enter Diagnosis" />
 					</tr>
+					
 					<tr>
 						<td>Contact</td>
-						<td th:text="${employee.contactNumber}"></td>
+						<td><input type="text" th:field="${employee.contactNumber}"
+							class="form-control col-4 mb-4" placeholder="Enter Diagnosis" />
 					</tr>
 					<tr>
 						<td>Email Address</td>
@@ -81,7 +84,7 @@
 			<br /> 
 			
 			<input type="hidden" th:field="${employee.employeeId}" />
-			<input type="hidden" th:field="${employee.employeeId}" />
+			
 
 
 			<div style="text-align: center;">
@@ -91,7 +94,7 @@
 		</form>
 		<br /> <br />
 		<div style="text-align: center;">
-			<a th:href="@{/surgerywaitinglist}">Back To List</a>
+			<a th:href="@{/employee/{employeeId}(employeeId=${employee.employeeId})}">Back To List</a>
 		</div>
 
 	</div>
