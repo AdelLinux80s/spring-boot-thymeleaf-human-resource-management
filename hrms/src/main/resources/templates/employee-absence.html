@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="windows-1256">
+<title>Absence Management</title>
+
+
+<link rel="stylesheet"
+	 href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" 
+	 integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" 
+	 crossorigin="anonymous">
+
+</head>
+<body>
+	<div class="container">
+		<h3> Absence Management:</h3>
+		<hr/>
+		<br/>
+		
+		
+			<br /> 
+			<br />
+		<br/>
+		<br/>
+		
+		<!-- ///////////////////////////////
+			To auto/prevent column wrapping
+			/////////////////////////////// -->
+			
+		<div class="row">
+			<div class="col-auto">
+				<table class="table table-primary table-bordered table-striped" id="absence">
+					<thead>
+						<tr>
+							<th>Reference Number</th>
+							<th>Starting At</th>
+							<th>Ending In</th>
+							
+							<th>Approved</th>
+							
+							
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="absence: ${absenceDto}">
+							<td th:text="${absence.absenceId}"></td>
+							<td th:text="${#dates.format(absence.startingDate, 'dd-MM-yyyy')}"></td>
+							<td th:text="${#dates.format(absence.endingDate, 'dd-MM-yyyy')}"></td>
+							<td th:text="${absence.approvedToString}"></td>
+							
+							<td>
+								<a th:href="@{/absence-update}" class="btn btn-info">Update</a>
+								<a th:href="@{/absence-delete}" class="btn btn-info">Remove</a>
+							
+							</td>
+						</tr>
+					</tbody>
+					
+				</table>
+			</div>
+		</div>
+	</div>
+	
+	<br /> <br />
+		<div style="text-align: center;">
+			<a th:href="@{/employee/{employeeId}(employeeId=${employeeId})}">Back To List</a>
+		</div>
+		
+	
+	
+	
+		
+		
+</body>
+</html>

@@ -2,6 +2,7 @@ package org.hospital.hrms.model;
 
 import java.util.Date;
 
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,5 +21,5 @@ public class Absence {
 	private long employeeId;
 	private Date startingDate;
 	private Date endingDate;
-	private boolean approved;
+	private Boolean approved;
 }

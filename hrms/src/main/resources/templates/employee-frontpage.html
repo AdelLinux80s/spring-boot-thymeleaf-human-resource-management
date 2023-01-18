@@ -17,8 +17,8 @@
 		<hr/>
 		<br/>
 		
-		<a th:href="@{/employee/profile(employeeId=${employee.employeeId})}" class="btn btn-primary">Profile</a>
-		<a th:href="@{/surgerywaitinglist/patientSurgerySearch}" class="btn btn-primary">Patient Procedure Search</a>
+		<a th:href="@{/employee/profile/{employeeId}(employeeId=${employee.employeeId})}" class="btn btn-primary">Profile</a>
+		<a th:href="@{/absence/employee/{employeeId}(employeeId=${employee.employeeId})}" class="btn btn-primary">Absence Management</a>
 			<br /> 
 			<br />
 		<br/>
@@ -67,6 +67,8 @@
 			</div>
 		</div>
 	</div>
+	
+				
 	
 	
 		

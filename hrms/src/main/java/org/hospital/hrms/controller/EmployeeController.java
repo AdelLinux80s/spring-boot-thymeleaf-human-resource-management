@@ -17,24 +17,26 @@ public class EmployeeController {
 	@Autowired
 	private EmployeeRepository EmployeeRepo;
 	
-	@GetMapping("/employee/{id}")
-	public ModelAndView getOne(@PathVariable Long id) {
+	@GetMapping("/employee/{employeeId}")
+	public ModelAndView getOne(@PathVariable Long employeeId) {
 		ModelAndView mav = new ModelAndView("employee-frontpage");
-		Employee employee = EmployeeRepo.findById(id).get();
+		Employee employee = EmployeeRepo.findById(employeeId).get();
 		mav.addObject("employee", employee);
 		return mav;
 	}
 	
-	@GetMapping("/employee/profile")
-	public ModelAndView getProfile(@RequestParam Long employeeId) {
+	@GetMapping("/employee/profile/{employeeId}")
+	public ModelAndView getProfile(@PathVariable Long employeeId) {
 		
-		System.out.println(employeeId);
+		//System.out.println(employeeId);
 		Employee employee = EmployeeRepo.findById(employeeId).get();
 		//System.out.println(employee);
 		ModelAndView mav = new ModelAndView("employee-profile");
 		mav.addObject("employee", employee);
 		return mav;
 	}
+	
+	
 	
 	@PostMapping("/employee/saveProfile")
 	public String saveProfile(@ModelAttribute Employee employee) {
