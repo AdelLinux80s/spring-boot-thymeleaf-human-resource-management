@@ -24,9 +24,11 @@ public class Employee {
 	private String emailAddress;
 	private Date dob;
 	private String occupation;
+	private String location;
 	private String alias;
 	private Date dateOfHire;
 	private String department;
 	private int userTypeId;
 	private int groupId;
+	private int groupSupervises;
 }

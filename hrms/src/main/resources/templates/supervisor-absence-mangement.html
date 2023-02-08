@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="windows-1256">
+<title>Supervisor Absence Management</title>
+
+
+<link rel="stylesheet"
+	 href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" 
+	 integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" 
+	 crossorigin="anonymous">
+
+</head>
+<body>
+	<div class="container">
+		<h3> Supervisor Absence Management:</h3>
+		<hr/>
+		<br/>
+		
+			<br /> 
+			<br />
+		<br/>
+		<br/>
+		
+		<!-- ///////////////////////////////
+			To auto/prevent column wrapping
+			/////////////////////////////// -->
+			
+		<div class="row">
+			<div class="col-auto">
+				<table class="table table-primary table-bordered table-striped" id="absence">
+				<input type="hidden" th:value="${supervisor}" name="supervisor" />
+					<thead>
+						<tr>
+							<th>Request Number</th>
+							<th>Employee ID</th>
+							<th>Employee Name</th>
+							<th>Starting At</th>
+							<th>Ending In</th>
+							<th>Status</th>
+							<th>Action</th>
+							
+							
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="absence: ${absenceDto}">
+							<div th:if="${absence.isSubmitted}">	
+								<td th:text="${absence.absenceId}"></td>
+								<td th:text="${absence.employeeId}"></td>
+								<td th:text="${absence.employeeName}"></td>
+								<td th:text="${#dates.format(absence.startingDate, 'yyyy-MM-dd')}"></td>
+								<td th:text="${#dates.format(absence.endingDate, 'yyyy-MM-dd')}"></td>
+								<td th:text="${absence.approvedToString}"></td>
+								
+								<td>
+									
+										<div th:if="${!absence.isApproved}">
+											
+												<a th:href="@{/absence/supervisor/approve/{supervisorId}/{absenceId}(supervisorId=${absence.supervisorId}, absenceId=${absence.absenceId})}" class="btn btn-info">Approve</a>
+												<a th:href="@{/absence/supervisor/reject/{supervisorId}/{absenceId}(supervisorId=${absence.supervisorId}, absenceId=${absence.absenceId})}" class="btn btn-info">Reject</a>
+											
+										</div>
+										<div th:if="${absence.isApproved}">
+											
+												<a th:href="@{/absence/supervisor/edit/{supervisorId}/{absenceId}(supervisorId=${absence.supervisorId}, absenceId=${absence.absenceId})}" class="btn btn-info">Edit</a>
+											
+										</div>
+								</td>
+							</div>	
+								
+									
+								
+								
+								
+							
+						</tr>
+					</tbody>
+					
+				</table>
+			</div>
+		</div>
+	</div>
+	
+	<br /> <br />
+		<!-- <input type="hidden" th:field="${supervisor}" /> -->
+		<input type="hidden" th:value="${supervisor}" name="supervisor" />
+		
+		
+		<div style="text-align: center;">
+			<a th:href="@{/employee/{employeeId}(employeeId=${employeeId})}">Back To List</a>
+		</div>
+		
+	
+	
+	
+		
+		
+</body>
+</html>

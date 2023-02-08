@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="windows-1256">
+<title>Absence Management</title>
+
+
+
+
+<link rel="stylesheet"
+	 href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/minty/bootstrap.min.css">
+</head>
+<body>
+	<div class="container">
+		
+			<h3>Overtime Management:</h3>
+			<hr />
+			<br /> <a
+				th:href="@{/overtime/employee/add/{employeeId}(employeeId=${employee.employeeId})}"
+				class="btn btn-primary">Add Overtime</a> <br /> <br /> <br /> <br />
+				
+	
+				<div class="col-auto">
+					<table class="table table-primary table-bordered table-striped"
+						id="absence" >
+						<thead>
+							<tr>
+								<th>Request Number</th>
+								<th>Date</th>
+								<th>Time In</th>
+								<th>Time Out</th>
+			
+								<th>Status</th>
+								<th style="width: 30.00%" >Action</th>
+			
+			
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="overtime: ${overtimeDto}">
+								<td th:text="${overtime.overtimeId}"></td>
+								<td	th:text="${#dates.format(overtime.overtimeIn, 'yyyy-MM-dd')}"></td>
+								<td	th:text="${#dates.format(overtime.timeIn, 'HH:mm')}"></td>
+								<td th:text="${#dates.format(overtime.timeOut, 'HH:mm')}"></td>
+								<td th:text="${overtime.approvedToString}"></td>
+			
+								<td >
+									
+			
+								
+			
+												<div th:switch="${overtime.submitted}">
+													
+													<a th:case="null"
+														th:href="@{/overtime/submit/{overtimeId}(overtimeId=${overtime.overtimeId})}"
+														class="btn btn-info">Submit </a>
+													
+													<a th:case="true"
+														th:href="@{/overtime/submit/{overtimeId}(overtimeId=${overtime.overtimeId})}"
+														class="btn btn-info disabled" role="button" aria-disabled="true">Submit </a>
+													
+													<a th:case="false"
+														th:href="@{/overtime/submit/{overtimeId}(overtimeId=${overtime.overtimeId})}"
+														class="btn btn-info">Submit </a>
+			
+													
+												</div>
+										
+										<a
+											th:href="@{/overtime/update/{overtimeId}(overtimeId=${overtime.overtimeId})}"
+											class="btn btn-info">Update</a> <a
+											th:href="@{/overtime/delete/{overtimeId}(overtimeId=${overtime.overtimeId})}"
+											class="btn btn-info">Remove</a>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				
+		</div>
+	</div>
+
+	<br />
+	<br />
+	<div style="text-align: center;">
+		<a th:href="@{/employee/{employeeId}(employeeId=${employeeId})}">Back
+			To List</a>
+	</div>
+
+
+
+
+
+
+</body>
+</html>

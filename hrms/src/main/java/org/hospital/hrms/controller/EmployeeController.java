@@ -17,9 +17,14 @@ public class EmployeeController {
 	@Autowired
 	private EmployeeRepository EmployeeRepo;
 	
+	
+	
 	@GetMapping("/employee/{employeeId}")
 	public ModelAndView getOne(@PathVariable Long employeeId) {
+		//ModelAndView mav = new ModelAndView("index - Copy");
 		ModelAndView mav = new ModelAndView("employee-frontpage");
+
+		
 		Employee employee = EmployeeRepo.findById(employeeId).get();
 		mav.addObject("employee", employee);
 		return mav;

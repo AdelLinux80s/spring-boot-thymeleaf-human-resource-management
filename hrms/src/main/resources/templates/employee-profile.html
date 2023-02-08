@@ -3,12 +3,14 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Profile</title>
-<link
+<!-- <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
 	rel="stylesheet"
 	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-	crossorigin="anonymous">
+	crossorigin="anonymous"> -->
 
+<link rel="stylesheet"
+	 href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/minty/bootstrap.min.css">
 
 
 </head>
@@ -17,7 +19,7 @@
 <body>
 	<div class="container">
 		<br />
-		Welcome <span th:text="${employee.firstName}"></span>
+		<h2> Welcome <span th:text="${employee.firstName}"></span> </h2>
 		<br />
 		<hr />
 		<br />
@@ -42,22 +44,23 @@
 					</tr>
 					<tr>
 						<td>Date Of Birth</td>
-						<td th:text="${employee.dob}"></td>
+						<td th:text="${#dates.format(employee.dob, 'yyyy-MM-dd')}"></td>
 					</tr>
 					<tr>
 						<td>Date of Hire</td>
-						<td th:text="${employee.dateOfHire}"></td>
+						<td th:text="${#dates.format(employee.dateOfHire, 'yyyy-MM-dd')}"></td>
+									
 					</tr>
 					<tr>
 						<td>Address</td>
 						<td><input type="text" th:field="${employee.address}"
-							class="form-control col-4 mb-4" placeholder="Enter Diagnosis" />
+							class="form-control col-4 mb-4" style="max-width: 100%" placeholder="Enter Address" />
 					</tr>
 					
 					<tr>
 						<td>Contact</td>
 						<td><input type="text" th:field="${employee.contactNumber}"
-							class="form-control col-4 mb-4" placeholder="Enter Diagnosis" />
+							class="form-control col-4 mb-4" style="max-width: 100%" placeholder="Enter Contact" />
 					</tr>
 					<tr>
 						<td>Email Address</td>
